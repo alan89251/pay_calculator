@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class MainPart extends StatelessWidget {
@@ -51,7 +53,29 @@ class MainPart extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 8.0),
             child: Container(
               color: Colors.white,
-              child: Text('Report'),
+              child: RichText(
+                textAlign: TextAlign.left,
+                text: TextSpan(
+                  text: '',
+                  style: DefaultTextStyle.of(context).style,
+                  children: [
+                    TextSpan(
+                      text: 'Report',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline
+                      )
+                    ),
+                    TextSpan(text: '\n'),
+                    TextSpan(text: 'regular pay:'),
+                    TextSpan(text: '\n'),
+                    TextSpan(text: 'overtime pay:'),
+                    TextSpan(text: '\n'),
+                    TextSpan(text: 'total pay:'),
+                    TextSpan(text: '\n'),
+                    TextSpan(text: 'tax:')
+                  ]
+                ),
+              ),
             )
           )
         )
