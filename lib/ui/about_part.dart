@@ -9,8 +9,12 @@ class AboutPart extends StatelessWidget {
       color: Colors.grey,
       child: Column(
         children: const [
-          Text('Chun Fung Suen'),
-          Text('301277969')
+          Text(
+            'Chun Fung Suen'
+            '\n'
+            '301277969',
+            textAlign: TextAlign.center,
+          ),
         ],
       )
     );
