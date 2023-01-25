@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'main_part.dart';
+import 'about_part.dart';
 
 class Calculator extends StatelessWidget {
   const Calculator({super.key});
@@ -9,8 +11,11 @@ class Calculator extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Pay Calculator'),
       ),
-      body: const Center(
-        child: Text(''),
+      body: Column(
+        children: [
+          MainPart(),
+          AboutPart()
+        ]
       ),
     );
   }
