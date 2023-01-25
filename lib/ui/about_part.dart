@@ -5,11 +5,14 @@ class AboutPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        Text('Chun Fung Suen'),
-        Text('301277969')
-      ],
+    return Container(
+      color: Colors.grey,
+      child: Column(
+        children: const [
+          Text('Chun Fung Suen'),
+          Text('301277969')
+        ],
+      )
     );
   }
 }
