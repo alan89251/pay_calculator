@@ -20,7 +20,7 @@ class Calculator extends StatelessWidget {
               child: MainPart(),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(16.0, 0.0, 0.0, 0.0),
+              padding: EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 16.0),
               child: AboutPart(),
             ),
           ],
