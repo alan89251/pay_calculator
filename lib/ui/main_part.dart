@@ -138,7 +138,7 @@ class _MainPartState extends State<MainPart> {
                             const TextSpan(text: '\n'),
                             TextSpan(text: 'total pay: ${payModel.totalPay}'),
                             const TextSpan(text: '\n'),
-                            TextSpan(text: 'tax: ${payModel.tax.toStringAsFixed(3)}')
+                            TextSpan(text: 'tax: ${payModel.tax.toStringAsFixed(2)}')
                           ]
                       ),
                     ),
