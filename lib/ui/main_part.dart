@@ -12,6 +12,14 @@ class MainPart extends StatefulWidget {
 class _MainPartState extends State<MainPart> {
   final _numberOfHoursController = TextEditingController();
   final _hourlyRateController = TextEditingController();
+  bool _isNumberOfHoursValid = true;
+  bool _ishourlyRateValid = true;
+  Color get _isNumberOfHoursTextFieldBorderColor {
+    return _isNumberOfHoursValid ? Colors.grey : Colors.red;
+  }
+  Color get _hourlyRateTextFieldBorderColor {
+    return _ishourlyRateValid ? Colors.grey : Colors.red;
+  }
 
   @override
   void dispose() {
@@ -33,8 +41,19 @@ class _MainPartState extends State<MainPart> {
                   padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 4.0),
                   child: TextField(
                     controller: _numberOfHoursController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: _isNumberOfHoursTextFieldBorderColor,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: _isNumberOfHoursTextFieldBorderColor,
+                        ),
+                      ),
                       hintText: 'Number of hours',
                       filled: true,
                       fillColor: Colors.white,
@@ -43,29 +62,49 @@ class _MainPartState extends State<MainPart> {
                 )
               ),
               Center(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
-                    child: TextField(
-                      controller: _hourlyRateController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Hourly rate',
-                        filled: true,
-                        fillColor: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
+                  child: TextField(
+                    controller: _hourlyRateController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: _hourlyRateTextFieldBorderColor
+                        )
                       ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 3,
+                          color: _hourlyRateTextFieldBorderColor
+                        )
+                      ),
+                      hintText: 'Hourly rate',
+                      filled: true,
+                      fillColor: Colors.white,
                     ),
-                  )
+                  ),
+                )
               ),
               Center(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          payModel.setInfo(int.parse(_numberOfHoursController.text), double.parse(_hourlyRateController.text));
-                        },
-                        child: const Text('Calculate')
-                    ),
-                  )
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _isNumberOfHoursValid = _numberOfHoursController.text.contains(RegExp('^[0-9]+\$'));
+                      });
+                      setState(() {
+                        _ishourlyRateValid = _hourlyRateController.text.contains(RegExp('([0-9]*[.])?[0-9]+'));
+                      });
+                      if (!_isNumberOfHoursValid || !_ishourlyRateValid) {
+                        return;
+                      }
+                      payModel.setInfo(int.parse(_numberOfHoursController.text), double.parse(_hourlyRateController.text));
+                    },
+                    child: const Text('Calculate')
+                  ),
+                )
               ),
               Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 8.0),
