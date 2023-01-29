@@ -28,6 +28,14 @@ class _MainPartState extends State<MainPart> {
     super.dispose();
   }
 
+  bool _validateNumberOfHours(String numberOfHours) {
+    return int.tryParse(numberOfHours) != null;
+  }
+
+  bool _validateHourlyRate(String hourlyRate) {
+    return double.tryParse(hourlyRate) != null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PayModel>(
@@ -92,10 +100,10 @@ class _MainPartState extends State<MainPart> {
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        _isNumberOfHoursValid = _numberOfHoursController.text.contains(RegExp('^[0-9]+\$'));
+                        _isNumberOfHoursValid = _validateNumberOfHours(_numberOfHoursController.text);
                       });
                       setState(() {
-                        _ishourlyRateValid = _hourlyRateController.text.contains(RegExp('([0-9]*[.])?[0-9]+'));
+                        _ishourlyRateValid = _validateHourlyRate(_hourlyRateController.text);
                       });
                       if (!_isNumberOfHoursValid || !_ishourlyRateValid) {
                         return;
